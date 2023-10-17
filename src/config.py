@@ -4,18 +4,23 @@ MODELS = {
         "models": {
             "high_resolution_style": {
                 "name": "High Resolution Style",
-                "description": "Generate anything you can imagine in 2048 resolution",
+                "description": "Create stunning 2048 resolution images from your imagination",
                 "endpoint_name": "SD_XL_ENDPOINT"
             },
             "realistic_style": {
                 "name": "Realistic Style",
-                "description": "Generate anything you can imagine with a realistic style",
+                "description": "Bring your imagination to life with a touch of realism",
                 "endpoint_name": "SD_REALISTIC_VISION_ENDPOINT",
             },
             "anime_style":{
                 "name": "Anime Style",
-                "description": "Generate anything you can imagine with a anime style",
+                "description": "Turn your ideas into vibrant anime-style images",
                 "endpoint_name": "SD_ANIME_STYLE_ENDPOINT",
+            },
+            "openjourney":{
+                "name": "OpenJourney",
+                "description": "Open Source version of the famous Midjourney model",
+                "endpoint_name": "SD_OPENJOURNEY_ENDPOINT",
             }
         },
         "input_format": ["text"],
@@ -24,15 +29,20 @@ MODELS = {
     "image_to_text": {
         "name": "Image to text",
         "models": {
-            "car_plate_recognition": {
-                "name": "Car Plate Recognition",
-                "description": "Extract the car plate from a vehicle image",
-                "endpoint_name": "CAR_PLATE_REGONITION_ENDPOINT",
-            },
             "image_captioning": {
                 "name": "Image Captioning",
-                "description": "Ask any question you have to an image",
+                "description": "Interact with images by asking any question",
                 "endpoint_name": "IMAGE_CAPTIONING_ENDPOINT"
+            },
+            "car_plate_transcription": {
+                "name": "Car Plate Transcription",
+                "description": "Extract and read car plate numbers from vehicle images",
+                "endpoint_name": "CAR_PLATE_REGONITION_ENDPOINT",
+            },
+            "handwritten_transcription": {
+                "name": "Handwritten Transcription",
+                "description": "Transcribe text from handwritten images with ease",
+                "endpoint_name": "HANDWRITTEN_TRANSCRIPTION",
             },
         },
         "input_format": ["image"],
@@ -43,8 +53,8 @@ MODELS = {
         "models": {
             "sadtalker": {
                 "name": "SadTalker",
-                "description": "Get a video of yourself talking as someone else",
-                "endpoint_name": "SADTALKER_ENDPOINT"
+                "description": "Create a video of yourself speaking as someone else",
+                "endpoint_name": "LIPSYNCING_ENDPOINT"
             }
         },
         "input_format": ["image", "audio"],
@@ -55,7 +65,7 @@ MODELS = {
         "models": {
             "transcription": {
                 "name": "Transcription",
-                "description": "Transcript any audio into text",
+                "description": "Convert any audio into readable text",
                 "endpoint_name": "TRANSCRIPTION_ENDPOINT"
             }
         },
@@ -67,12 +77,12 @@ MODELS = {
         "models": {
             "increase_resolution": {
                 "name": "Increase Resolution",
-                "description": "Increase the resolution of any image",
+                "description": "Enhance the resolution of any image for a clearer view",
                 "endpoint_name": ""
             },
             "image_tuning": {
                 "name": "Image Tuning",
-                "description": "Modify your image as you wish",
+                "description": "Customize your image to your liking",
                 "endpoint_name": ""
             }
         },
@@ -84,17 +94,17 @@ MODELS = {
         "models": {
             "pdf": {
                 "name": "PDF",
-                "description": "Ask questions to your pdf",
+                "description": "Interact with your PDF by asking questions",
                 "endpoint_name": ""
             },
             "csv": {
                 "name": "CSV",
-                "description": "Ask questions to your csv",
+                "description": "Query your CSV files like a pro",
                 "endpoint_name": ""
             },
             "text_document": {
                 "name": "Text Document",
-                "description": "Ask questions to your text document",
+                "description": "Ask questions and get answers from your text documents",
                 "endpoint_name": ""
             }
         },
@@ -106,12 +116,12 @@ MODELS = {
         "models": {
             "video_translation": {
                 "name": "Video Translation",
-                "description": "Generate vides as you talk in a new language",
+                "description": "Speak in your language, let us generate the video in another",
                 "endpoint_name": ""
             },
             "video_subtitles": {
                 "name": "Video Subtitles",
-                "description": "Add subtitles to your video",
+                "description": "Add subtitles to your videos for better understanding",
                 "endpoint_name": ""
             }
         },
@@ -123,12 +133,12 @@ MODELS = {
         "models": {
             "tweets_sentiment": {
                 "name": "Tweets sentiment",
-                "description": "Get the sentiment of your tweets",
+                "description": "Understand the sentiment behind your tweets",
                 "endpoint_name": ""
             },
             "product_review_sentiment": {
                 "name": "Product review sentiment",
-                "description": "Product review sentiment",
+                "description": "Analyze the sentiment behind product reviews",
                 "endpoint_name": ""
             }
         },
@@ -140,12 +150,12 @@ MODELS = {
         "models": {
             "csv": {
                 "name": "CSV",
-                "description": "Transform the columns of your CSV using natural language",
+                "description": "Manipulate your CSV columns using natural language",
                 "endpoint_name": ""
         },
             "excel": {
                 "name": "EXCEL",
-                "description": "Transform the columns of your EXCEL using natural language",
+                "description": "Transform your EXCEL columns using simple language",
                 "endpoint_name": ""
         },
         
@@ -158,22 +168,22 @@ MODELS = {
         "models": {
             "translation": {
                 "name": "Translation",
-                "description": "Transform the columns of your CSV using natural language",
+                "description": "Translate your text into different languages",
                 "endpoint_name": ""
         },
             "email_generation": {
                 "name": "Email Generation",
-                "description": "Convert your inputs into a well-written email",
+                "description": "Turn your thoughts into a professionally written email",
                 "endpoint_name": ""
         },
             "social_media_content_generation": {
                 "name": "Social Media Content Generation",
-                "description": "Generate social media content",
+                "description": "Generate engaging content for your social media platforms",
                 "endpoint_name": ""
         },
             "summary_generation": {
                 "name": "Summary Generation",
-                "description": "Generate a summary of your text",
+                "description": "Get a concise summary of your lengthy text",
                 "endpoint_name": ""
             }
         },

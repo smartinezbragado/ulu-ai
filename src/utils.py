@@ -7,6 +7,7 @@ import zipfile
 from PIL import Image
 import streamlit as st
 from typing import Callable, Union, List
+from predict import send_runpod_api_request, send_api_request
 
 
 dotenv.load_dotenv()
@@ -24,22 +25,15 @@ def read_file_as_dataframe(path: str) -> pd.DataFrame:
         return pd.read_excel(path)
     else:
         raise InvalidFormatError("Invalid file format")
-    
-    
-def check_api_status(request) -> str:
-    if request.status() == "IN_QUEUE":
-        st.write("Your request is in the queue. Hang tight!")
-    while request.status() == "IN_QUEUE":
-        time.sleep(2)
-    if request.status() == "FAILED":
-        st.write("Your request failed")
 
     
  
-def encode_image_to_base64(image_path: str) -> str:
-    """Given an image path, returns the base64 encoded string of the image"""
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
+def encode_image_to_base64(image: Image) -> str:
+    """Given a PIL.Image object, returns the base64 encoded string of the image"""
+    buffered = io.BytesIO()
+    image.save(buffered, format="JPEG")
+    img_str = base64.b64encode(buffered.getvalue())
+    return img_str.decode('utf-8')
     
 
 def encode_audio_to_base64(audio_file: str) -> str:
@@ -52,6 +46,19 @@ def decode_base64_to_image(base64_string: str) -> Image:
     decoded_image = base64.b64decode(base64_string)
     image = Image.open(io.BytesIO(decoded_image))
     return image
+
+
+def decode_base64_to_audio(base64_string: str) -> bytes:
+    """Given a base64 string, returns the decoded audio"""
+    decoded_audio = base64.b64decode(base64_string)
+    return decoded_audio
+
+
+def decode_base64_to_video(base64_string: str) -> io.BytesIO:
+    """Given a base64 string, returns the decoded video as a BytesIO object"""
+    decoded_video = base64.b64decode(base64_string)
+    video = io.BytesIO(decoded_video)
+    return video
 
 
 def upload_image(text: str) -> Image:
@@ -87,7 +94,7 @@ def upload_audio(text: str):
         audio_file = uploaded_file.read()
         if uploaded_file.type == "audio/mp3":
             st.audio(audio_file, format='audio/mp3')
-        elif uploaded_file.type == "audio/mp4":
+        elif uploaded_file.type == "video/mp4":
             st.audio(audio_file, format='audio/mp4')
         else:
             raise ValueError("The audio must be mp3 or mp4 format")
@@ -95,15 +102,9 @@ def upload_audio(text: str):
         return audio_file
 
 
-def launch_buttom(
-    fn: Callable, 
-    input: dict, 
-    waiting_str: str, 
-    output_str: str
-    ):
+def launch_buttom(input: dict, waiting_str: str, output_str: str, request_fn: Callable):
     if st.button('Launch'):
         st.write(waiting_str)
-        output = fn(**input)
+        output = request_fn(**input)
         st.markdown(output_str)
-        
         return output
