@@ -5,7 +5,8 @@ WORKDIR /
 ADD requirements.txt .
 
 RUN pip install -r requirements.txt
-RUN pip install bitsandbytes accelerate
+
+ENV HF_HOME="/runpod-volume"
 
 COPY . .
 

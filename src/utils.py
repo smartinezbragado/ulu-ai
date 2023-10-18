@@ -1,13 +1,13 @@
 import io
+import os
 import base64
-import time
+import boto3
 import pandas as pd
 import dotenv
 import zipfile
 from PIL import Image
 import streamlit as st
 from typing import Callable, Union, List
-from predict import send_runpod_api_request, send_api_request
 
 
 dotenv.load_dotenv()
@@ -69,6 +69,7 @@ def upload_image(text: str) -> Image:
         st.image(image, caption='Uploaded Image.', use_column_width=True)
         return image
     
+    
 def download_images(images):
     """Download images in streamlit, given a list of PIL.Image objects"""
     zip_buffer = io.BytesIO()
@@ -88,18 +89,42 @@ def download_images(images):
 
 
 def upload_audio(text: str):
-    uploaded_file = st.file_uploader(text, type=["mp3", "mp4"])
+    uploaded_file = st.file_uploader(text, type=["mp3", "mp4", "wav"])
+    st.markdown("<br>", unsafe_allow_html=True)
     
     if uploaded_file is not None:
         audio_file = uploaded_file.read()
-        if uploaded_file.type == "audio/mp3":
-            st.audio(audio_file, format='audio/mp3')
-        elif uploaded_file.type == "video/mp4":
-            st.audio(audio_file, format='audio/mp4')
-        else:
-            raise ValueError("The audio must be mp3 or mp4 format")
+
+        try:
+            for fmt in ["audio/mpeg", 'audio/mp4', "audio/x-wav"]:
+                if uploaded_file.type == fmt:
+                    st.audio(audio_file, format=fmt)
+            
+            return audio_file
         
-        return audio_file
+        except:
+            raise ValueError("Allowed audio formats: mp3, mp4 and wav")
+    
+    
+def save_audio_to_tmp(audio_file, filename: str):
+    """
+    Save audio files to a tmp directory
+
+    :param audio_file: Audio file to save
+    :param filename: Name of the file
+    """
+    with open(f'/tmp/{filename}', 'wb') as f:
+        f.write(audio_file)
+        
+        
+def download_text(text: str, label: str, filename: str):
+    st.download_button(
+        label=label,
+        data=text,
+        file_name=filename,
+        mime='text/plain',
+    )
+
 
 
 def launch_buttom(input: dict, waiting_str: str, output_str: str, request_fn: Callable):

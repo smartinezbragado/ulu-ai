@@ -7,11 +7,13 @@ from src.utils import (
     upload_image, 
     launch_buttom, 
     upload_audio, 
+    download_text,
     download_images,
     encode_audio_to_base64, 
     encode_image_to_base64, 
     decode_base64_to_image,
-    decode_base64_to_video
+    decode_base64_to_video,
+    
 )
 from predict import send_api_request, send_runpod_api_request
 
@@ -123,19 +125,33 @@ def main():
             
         # Audio to text
         if model_category == "audio_to_text":
-            uploaded_file = st.file_uploader("Upload what you want to transcript to text:", type=["mp3", "mp4"])
+            uploaded_audio = upload_audio("Ready to transform your audio into text? Upload your audio file here:")
+            st.markdown("<br>", unsafe_allow_html=True)
             
-            if uploaded_file is not None:
-                audio_file = uploaded_file.read()
-                if uploaded_file.type == "audio/mp3":
-                    st.audio(audio_file, format='audio/mp3')
-                elif uploaded_file.type == "audio/mp4":
-                    st.audio(audio_file, format='audio/mp4')
-
-            if st.button('Launch'):
-                st.write("Starting transcription...")
-
+            if selected_model == "transcription" and uploaded_audio is not None:
+                transcription = launch_buttom(
+                    request_fn=send_api_request,
+                    input={
+                        "model": selected_model,
+                        "category": model_category,
+                        "inputs": {
+                            "audio_base64": encode_audio_to_base64(uploaded_audio),
+                            "model": "large-v2",
+                            "transcription": "plain text",
+                            "translate": False,
+                            "language": "en",
+                        }
+                    },
+                    waiting_str="🎧 Hang tight... We're spinning your audio into text! 🌀",
+                    output_str="🎬 Voila! Your audio has been magically transcribed. 🎉"
+                )
                 
+                if transcription:
+                    transcipted_text = ' '.join([segment['text'] for segment in transcription['output']['segments']])
+                    st.markdown(transcipted_text, unsafe_allow_html=True)
+                    download_text(
+                        text=transcipted_text, label="Download transcription", filename="transcription.txt"
+                    )
                 
         # Image to text
         if model_category == "image_to_text":
@@ -168,6 +184,7 @@ def main():
                     # st.image(image, caption='Uploaded Image.', use_column_width=True)
                     question = st.text_input("Ask something:")
                     caption = launch_buttom(
+                        request_fn=send_runpod_api_request,
                         input={
                             "model": selected_model,
                             "category": model_category,
@@ -179,8 +196,9 @@ def main():
                         waiting_str="🕒 Time for a quick coffee break... your caption will be ready in a jiffy! ☕",
                         output_str="🎉 Voila! Your caption is ready! 🚀"
                     )
-                                        
-                    st.write(caption)
+                    print(f"Caption: {caption}")
+                    if caption:      
+                        st.write(caption)
                 
         # Lip Syncing
         if model_category == "lip_syncing":
@@ -190,7 +208,7 @@ def main():
                     
             if uploaded_image is not None and uploaded_audio is not None:
                 encoded_video = launch_buttom(
-                    waiting_str="🎬 Lights, camera, action! Your lip sync video is in the making... 🍿",
+                    request_fn=send_runpod_api_request,
                     input={
                         "model": selected_model,
                         "category": model_category,
@@ -199,6 +217,7 @@ def main():
                             "audio": encode_audio_to_base64(uploaded_audio),
                         }
                     },
+                    waiting_str="🎬 Lights, camera, action! Your lip sync video is in the making... 🍿",
                     output_str="🌟 And cut! Your blockbuster lip sync video is ready for the premiere! 🎥"
                 )
                 if encoded_video is not None:

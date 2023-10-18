@@ -17,14 +17,5 @@ def decode_base64_to_image(base64_string: str) -> Image:
 def load_model():
     """Loads the model and preprocessor"""
     processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
-    model = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b", load_in_8bit=True, device_map="auto")
+    model = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b", torch_dtype=torch.float16 , device_map="auto")
     return processor, model.to(device)
-
-
-
-def predict(image: Image, question: str) -> str:
-    """Run a single prediction on the model"""
-    inputs = processor(image, question, return_tensors="pt").to(device)
-    encoded_output = model.generate(**inputs)
-    generated_text = processor.decode(encoded_output[0], skip_special_tokens=True).strip()
-    return generated_text

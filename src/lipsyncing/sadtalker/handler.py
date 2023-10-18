@@ -40,7 +40,9 @@ def handler(event):
     '''
     # Get input rquest
     input = event["input"]
+    
     logger.info(input)
+    
     os.makedirs("./inputs/", exist_ok=True)
     os.makedirs("./results/", exist_ok=True)
 
@@ -52,6 +54,8 @@ def handler(event):
     audio_path = "./inputs/input_audio.mp3"
     with open(audio_path, "wb") as f:
         f.write(audio)
+    
+    logger.info(os.system("ls checkpoints"))
     
     args = {
         "driven_audio": audio_path,

@@ -17,6 +17,7 @@ def main(args):
     audio_path = args["driven_audio"]
     checkpoint_dir = args["checkpoint_dir"]
     save_dir = os.path.join(args["result_dir"], "sadtalker")
+    
     os.makedirs(save_dir, exist_ok=True)
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
