@@ -6,25 +6,8 @@ MODELS = {
                 "name": "High Resolution Style",
                 "description": "Create stunning 2048 resolution images from your imagination",
                 "endpoint_name": "SD_XL_ENDPOINT"
-            },
-            "realistic_style": {
-                "name": "Realistic Style",
-                "description": "Bring your imagination to life with a touch of realism",
-                "endpoint_name": "SD_REALISTIC_VISION_ENDPOINT",
-            },
-            "anime_style":{
-                "name": "Anime Style",
-                "description": "Turn your ideas into vibrant anime-style images",
-                "endpoint_name": "SD_ANIME_STYLE_ENDPOINT",
-            },
-            "openjourney":{
-                "name": "OpenJourney",
-                "description": "Open Source version of the famous Midjourney model",
-                "endpoint_name": "SD_OPENJOURNEY_ENDPOINT",
             }
         },
-        "input_format": ["text"],
-        "output_format": "image",
     },
     "image_to_text": {
         "name": "Image to text",
@@ -44,9 +27,7 @@ MODELS = {
                 "description": "Transcribe text from handwritten images with ease",
                 "endpoint_name": "HANDWRITTEN_TRANSCRIPTION",
             },
-        },
-        "input_format": ["image"],
-        "output_format": "text"
+        }
     },
     "lip_syncing": {
         "name": "Lip Syncing",
@@ -68,26 +49,57 @@ MODELS = {
                 "description": "Convert any audio into readable text",
                 "endpoint_name": "TRANSCRIPTION_ENDPOINT"
             }
-        },
-        "input_format": ["audio"],
-        "output_format": "text",
+        }
     },  
+    "text_classification": {
+        "name": "Text Classification",
+        "models": {
+            "sentiment_analysis": {
+                "name": "Sentiment Analysis",
+                "description": "Understand the sentiment behind your text",
+                "endpoint_name": "SENTIMENT_ANALYSIS_ENDPOINT"
+            },
+        }
+    },
+    "text_to_text": {
+        "name": "Text to Text",
+        "models": {
+            "translation": {
+                "name": "Translation",
+                "description": "Translate your text into different languages",
+                "endpoint_name": "TRANSLATION_ENDPOINT"
+        },
+            "email_generation": {
+                "name": "Email Generation",
+                "description": "Turn your thoughts into a professionally written email",
+                "endpoint_name": ""
+        },
+            "social_media_content_generation": {
+                "name": "Social Media Content Generation",
+                "description": "Generate engaging content for your social media platforms",
+                "endpoint_name": ""
+        },
+            "summary_generation": {
+                "name": "Summary Generation",
+                "description": "Get a concise summary of your lengthy text",
+                "endpoint_name": ""
+            }
+        }
+    },
     "image_to_image": {
         "name": "Image to Image",
         "models": {
-            "increase_resolution": {
-                "name": "Increase Resolution",
+            "image_upscaling": {
+                "name": "Image Upscaling",
                 "description": "Enhance the resolution of any image for a clearer view",
-                "endpoint_name": ""
+                "endpoint_name": "IMAGE_UPSCALING_ENDPOINT"
             },
             "image_tuning": {
                 "name": "Image Tuning",
                 "description": "Customize your image to your liking",
                 "endpoint_name": ""
             }
-        },
-        "input_format": ["image", "text"],
-        "output_format": "image",
+        }
     },
     "chat_with_documents": {
         "name": "Chat with documents",
@@ -107,9 +119,7 @@ MODELS = {
                 "description": "Ask questions and get answers from your text documents",
                 "endpoint_name": ""
             }
-        },
-        "input_format": ["document", "text"],
-        "output_format": "text",
+        }
     },
     "video_to_video": {
         "name": "Video to Video",
@@ -125,25 +135,6 @@ MODELS = {
                 "endpoint_name": ""
             }
         },
-        "input_format": ["video", "text"],
-        "output_format": "video"
-    },
-    "sentiment_analysis": {
-        "name": "Sentiment Analysis",
-        "models": {
-            "tweets_sentiment": {
-                "name": "Tweets sentiment",
-                "description": "Understand the sentiment behind your tweets",
-                "endpoint_name": ""
-            },
-            "product_review_sentiment": {
-                "name": "Product review sentiment",
-                "description": "Analyze the sentiment behind product reviews",
-                "endpoint_name": ""
-            }
-        },
-        "input_format": ["text"],
-        "output_format": ["float", "text"]
     },
     "llm_on_documents": {
         "name": "LLM on documents",
@@ -159,35 +150,16 @@ MODELS = {
                 "endpoint_name": ""
         },
         
-        },
-        "input_format": ["csv", "xslx", "text"],
-        "output_format": ["csv", "xslx", "text"],
+        }
     },
-    "text_to_text": {
-        "name": "Text to Text",
+    "ai_pipelines":{
+        "name": "AI Pipelines",
         "models": {
-            "translation": {
-                "name": "Translation",
-                "description": "Translate your text into different languages",
+            "ai_pipelines": {
+                "name": "AI Pipelines",
+                "description": "Concatenate AI models on after another",
                 "endpoint_name": ""
-        },
-            "email_generation": {
-                "name": "Email Generation",
-                "description": "Turn your thoughts into a professionally written email",
-                "endpoint_name": ""
-        },
-            "social_media_content_generation": {
-                "name": "Social Media Content Generation",
-                "description": "Generate engaging content for your social media platforms",
-                "endpoint_name": ""
-        },
-            "summary_generation": {
-                "name": "Summary Generation",
-                "description": "Get a concise summary of your lengthy text",
-                "endpoint_name": ""
-            }
-        },
-        "input_format": ["csv", "xslx", "text"],
-        "output_format": ["csv", "xslx", "text"],
+            },
+        }
     }
 }

@@ -4,10 +4,9 @@ WORKDIR /
 
 ADD requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN pip install --upgrade -r /requirements.txt --no-cache-dir 
 
-ENV HF_HOME="/runpod-volume"
-
-COPY . .
+COPY handler.py /
+COPY utils.py /
 
 CMD [ "python", "-u", "/handler.py" ]

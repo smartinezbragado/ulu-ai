@@ -2,5 +2,4 @@ transformers
 torch
 runpod
 accelerate
-bitsandbytes
 scipy

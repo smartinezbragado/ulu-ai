@@ -15,14 +15,13 @@ def handler(event):
         input = event['input']
         question = input['question']
         encoded_image = input['image']
-        
-        logger.info(input)
-        
+                
         # Decode input image
         image = decode_base64_to_image(encoded_image)
         
         # Encode inputs
-        inputs = processor(image, question, return_tensors="pt").to(device)
+        qtext = f"Question: {question} Answer:"
+        inputs = processor(image, qtext, return_tensors="pt").to(device)
         
         # Make prediction
         logger.info("Making inference")

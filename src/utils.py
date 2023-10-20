@@ -1,13 +1,11 @@
 import io
-import os
 import base64
-import boto3
 import pandas as pd
 import dotenv
 import zipfile
 from PIL import Image
 import streamlit as st
-from typing import Callable, Union, List
+from typing import Callable
 
 
 dotenv.load_dotenv()
@@ -26,7 +24,6 @@ def read_file_as_dataframe(path: str) -> pd.DataFrame:
     else:
         raise InvalidFormatError("Invalid file format")
 
-    
  
 def encode_image_to_base64(image: Image) -> str:
     """Given a PIL.Image object, returns the base64 encoded string of the image"""
@@ -66,7 +63,7 @@ def upload_image(text: str) -> Image:
     uploaded_file = st.file_uploader(text, type=["jpg", "png"])
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption='Uploaded Image.', use_column_width=True)
+        st.image(image, caption='Uploaded Image.', width=image.width)
         return image
     
     
@@ -104,17 +101,6 @@ def upload_audio(text: str):
         
         except:
             raise ValueError("Allowed audio formats: mp3, mp4 and wav")
-    
-    
-def save_audio_to_tmp(audio_file, filename: str):
-    """
-    Save audio files to a tmp directory
-
-    :param audio_file: Audio file to save
-    :param filename: Name of the file
-    """
-    with open(f'/tmp/{filename}', 'wb') as f:
-        f.write(audio_file)
         
         
 def download_text(text: str, label: str, filename: str):
@@ -125,6 +111,14 @@ def download_text(text: str, label: str, filename: str):
         mime='text/plain',
     )
 
+
+def download_video(video: bytes, label: str, filename: str):
+    st.download_button(
+        label=label,
+        data=video,
+        file_name=filename,
+        mime='video/mp4',
+    )
 
 
 def launch_buttom(input: dict, waiting_str: str, output_str: str, request_fn: Callable):

@@ -18,7 +18,6 @@ RUN apt-get install python3-pip -y
 COPY requirements.txt /
 COPY requirements_2.txt /
 
-
 RUN --mount=type=cache,target=/root/.cache/pip
 
 RUN pip install --upgrade -r /requirements.txt --no-cache-dir 
@@ -26,9 +25,11 @@ RUN rm /requirements.txt
 
 RUN pip install --upgrade -r /requirements_2.txt --no-cache-dir 
 RUN rm /requirements_2.txt
+RUN pip install --upgrade runpod --no-cache-dir 
 
 COPY src/ /src
 COPY handler.py /
 COPY inference.py /
+COPY utils.py /
 
 CMD python3 -u handler.py
