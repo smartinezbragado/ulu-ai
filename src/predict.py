@@ -10,7 +10,7 @@ from src.config import MODELS
 runpod.api_key = os.environ['RUNPOD_API_KEY']
 
 def check_api_status(request) -> str:
-    time.sleep(1)
+    time.sleep(1.5)
     if request.status() == "IN_PROGRESS":
         st.write("The model is currently processing your request. Thank you for your patience.")
     if request.status() == "IN_QUEUE":

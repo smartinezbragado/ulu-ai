@@ -28,7 +28,7 @@ def add_lipsyncing_component(selected_model: str) -> None:
             waiting_str="🎬 Lights, camera, action! Your lip sync video is in the making... 🍿",
             output_str="🌟 And cut! Your blockbuster lip sync video is ready for the premiere! 🎥"
         )
-        print(encoded_video)
+
         if encoded_video is not None:
             decoded_video = decode_base64_to_video(encoded_video)
             st.video(decoded_video)
