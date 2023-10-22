@@ -1,6 +1,6 @@
 import streamlit as st
-from predict import send_runpod_api_request
-from utils import (
+from services.predict import send_runpod_api_request
+from services.utils import (
     encode_image_to_base64, 
     decode_base64_to_image, 
     upload_image,

@@ -1,6 +1,6 @@
 import streamlit as st
-from utils import upload_image, encode_image_to_base64, launch_buttom
-from predict import send_runpod_api_request
+from services.utils import upload_image, encode_image_to_base64, launch_buttom
+from services.predict import send_runpod_api_request
     
     
 def add_image_to_text_component(selected_model: str) -> None:

@@ -4,7 +4,7 @@
 import os
 import runpod
 import logging
-from utils import load_model, predict, decode_base64_to_image
+from services.utils import load_model, predict, decode_base64_to_image
 
 
 logger = logging.getLogger(__name__)

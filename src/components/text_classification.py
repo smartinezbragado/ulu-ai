@@ -1,6 +1,6 @@
 import streamlit as st
-from utils import launch_buttom
-from predict import send_runpod_api_request
+from services.utils import launch_buttom
+from services.predict import send_runpod_api_request
 
 def add_text_classification_components(selected_model: str) -> None:
     model_name = st.selectbox(

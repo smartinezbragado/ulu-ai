@@ -2,9 +2,9 @@ import requests
 import streamlit as st
 from PIL import Image
 from io import BytesIO
-from utils import launch_buttom
-from predict import send_api_request, send_runpod_api_request
-from utils import download_images, decode_base64_to_image
+from services.utils import launch_buttom
+from services.predict import send_api_request, send_runpod_api_request
+from services.utils import download_images, decode_base64_to_image
 
 
 def add_text_to_image_component(selected_model: str) -> None:

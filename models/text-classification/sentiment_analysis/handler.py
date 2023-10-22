@@ -1,5 +1,5 @@
 import runpod
-from utils import load_model, predict
+from services.utils import load_model, predict
 
 financial_model = load_model("ProsusAI/finbert")
 twitter_model = load_model("cardiffnlp/twitter-roberta-base-sentiment-latest")

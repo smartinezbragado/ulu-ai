@@ -5,7 +5,7 @@ import os
 import runpod
 from inference import main
 from runpod.serverless.modules.rp_logger import RunPodLogger
-from utils import encode_video_to_base64, decode_base64_to_image, decode_base64_to_audio
+from services.utils import encode_video_to_base64, decode_base64_to_image, decode_base64_to_audio
 
 
 logger = RunPodLogger()

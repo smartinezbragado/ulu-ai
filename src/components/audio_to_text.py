@@ -1,6 +1,6 @@
 import streamlit as st
-from utils import upload_audio, launch_buttom, encode_audio_to_base64, download_text
-from predict import send_api_request   
+from services.utils import upload_audio, launch_buttom, encode_audio_to_base64, download_text
+from services.predict import send_api_request   
     
 def add_audio_to_text_component(selected_model: str) -> None:
     uploaded_audio = upload_audio("Ready to transform your audio into text? Upload your audio file here:")

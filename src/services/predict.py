@@ -33,7 +33,7 @@ def send_runpod_api_request(model: str, category: str, inputs: dict):
 def send_api_request(model: str, category: str, inputs: dict):
     endpoint_name = MODELS[category]['models'][model]['endpoint_name']
     endpoint = os.environ[endpoint_name]
-    payload = payload = {"input": inputs}
+    payload = {"input": inputs}
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
