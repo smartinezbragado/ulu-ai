@@ -12,7 +12,8 @@ from src.services.display import (
     display_launch_buttom, 
     display_model_inputs, 
     display_model_outputs,
-    parse_model_output
+    parse_api_output,
+    parse_runpod_output
 )
 
 
@@ -101,12 +102,15 @@ def main():
             user_inputs=user_inputs, inference_config=inference_config
         )
         
+        # Display model outputs 
         if model_output:
-            # Parse model output
-            model_output = parse_model_output(
-                model_output=model_output, output_config=output_config, model_name=model_name
-            )
-            # Display model outputs 
+            # Parse output depending on the inference type
+            if inference_config['endpoint_type'] == 'api':
+                model_output = parse_api_output(model_output=model_output, model_name=model_name)
+            
+            elif inference_config['endpoint_type'] == 'runpod':
+                model_output = parse_runpod_output(model_output=model_output, output_config=output_config)
+            
             display_model_outputs(model_output=model_output)
             
                 

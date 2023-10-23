@@ -154,3 +154,69 @@ text_classification:
         type: text
 
 
+text_to_text:
+  display_name: Text to Text
+  models:
+    translation:
+      display_name: Translation
+      description: Translate your text into different languages
+      inference:
+        waiting_sentence: 🕒 Your text is being translated... 📚
+        output_sentence: 🎉 Your translation is ready! 🚀
+        endpoint_name: TRANSLATION_ENDPOINT
+        endpoint_type: runpod
+      inputs:
+        input_text:
+          type: text
+          display_sentence: Enter the text you want to translate
+          place_holder: 
+        translation_language:
+          display_sentence: Select the language you want to translate
+          type: selectbox
+          options:
+            - English
+            - Spanish
+            - German
+            - Italian
+            - Dutch
+      output:
+        type: text
+
+    email_generation:
+      display_name: Email Generation
+      description: Turn your thoughts into a professionally written email
+      endpoint_name: 
+
+    social_media_content_generation:
+      display_name: Social Media Content Generation
+      description: Generate engaging content for your social media platforms
+      endpoint_name: 
+    summary_generation:
+
+      display_name: Summary Generation
+      description: Get a concise summary of your lengthy text
+      endpoint_name: 
+
+
+image_to_image:
+  display_name: Image to Image
+  models:
+    image_upscaling:
+      display_name: Image Upscaling
+      description: Enhance the resolution of any image for a clearer view
+      inference:
+        waiting_sentence: 🕒 Your image is being processed... 🖼️
+        output_sentence: 🎉 Your upscaled image is ready! 🚀
+        endpoint_type: runpod
+        endpoint_name: IMAGE_UPSCALING_ENDPOINT
+      inputs:
+        image: 
+          type: image
+          display_sentence: Upload your squared image and convert it to 1024x1024 resolution
+      output:
+        type: image
+
+    image_tuning:
+      display_name: Image Tuning
+      description: Customize your image to your liking
+      endpoint_name: 

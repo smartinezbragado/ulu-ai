@@ -70,8 +70,8 @@ def display_launch_buttom(
         st.markdown(inference_config['output_sentence'])
         return output
     
-
-def parse_model_output(model_output, output_config: str, model_name: Optional[str] = None):
+    
+def parse_api_output(model_output, model_name: Optional[str] = None) -> dict:
     if model_name == "high_resolution_style":
         parsed_output = [Image.open(BytesIO(requests.get(img).content)) for img in model_output['output']['images']]
         return {'image': parsed_output}
@@ -80,7 +80,13 @@ def parse_model_output(model_output, output_config: str, model_name: Optional[st
         transcipted_text = ' '.join([segment['text'] for segment in model_output['output']['segments']])
         return {'text': transcipted_text}
     
-    elif output_config['type'] == "text":
+    elif model_name == "translation":
+        translated_text = model_output['output']['text'][0]
+        return {'text': translated_text}
+     
+
+def parse_runpod_output(model_output, output_config: str):
+    if output_config['type'] == "text":
         return {'text': model_output}
     
     elif output_config['type'] == "video":
@@ -88,8 +94,11 @@ def parse_model_output(model_output, output_config: str, model_name: Optional[st
         return {'video': decoded_video}
     
     elif output_config['type'] == "image":
-        decoded_image = decode_base64_to_image(model_output)
-        return {'image': decoded_video}
+        if isinstance(model_output, list):
+            decoded_image = [decode_base64_to_image(img) for img in  model_output]
+        else:
+            decoded_image = [decode_base64_to_image(model_output)]
+        return {'image': decoded_image}
     
     elif output_config['type'] == "audio":
         decoded_audio = decode_base64_to_audio(model_output)
