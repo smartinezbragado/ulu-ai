@@ -21,8 +21,7 @@ def check_api_status(request) -> str:
         st.write("Your request failed")
         
         
-def send_runpod_api_request(model: str, category: str, inputs: dict):
-    endpoint_name = MODELS[category]['models'][model]['endpoint_name']
+def send_runpod_api_request(inputs: dict, endpoint_name: str):
     endpoint = runpod.Endpoint(os.environ[endpoint_name])
     run_request = endpoint.run(inputs)
     check_api_status(run_request)
@@ -30,8 +29,7 @@ def send_runpod_api_request(model: str, category: str, inputs: dict):
     return output
 
 
-def send_api_request(model: str, category: str, inputs: dict):
-    endpoint_name = MODELS[category]['models'][model]['endpoint_name']
+def send_api_request(inputs: dict, endpoint_name: str):
     endpoint = os.environ[endpoint_name]
     payload = {"input": inputs}
     headers = {
@@ -40,5 +38,7 @@ def send_api_request(model: str, category: str, inputs: dict):
         "authorization": os.environ['RUNPOD_API_KEY']
 
     }
+    print(endpoint)
     response = requests.post(endpoint, json=payload, headers=headers)
+    print(json.loads(response.text))
     return json.loads(response.text)

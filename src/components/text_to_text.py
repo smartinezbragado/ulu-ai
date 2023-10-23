@@ -1,6 +1,6 @@
 import streamlit as st
-from services.predict import send_api_request
-from services.utils import download_text, launch_buttom  
+from common.predict import send_api_request
+from common.utils import download_text, launch_buttom  
 
 
 def add_text_to_text_component(selected_model: str) -> None:

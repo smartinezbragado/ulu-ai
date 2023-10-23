@@ -1,6 +1,6 @@
 import runpod
 from runpod.serverless.modules.rp_logger import RunPodLogger
-from services.utils import load_model
+from common.utils import load_model
 
 logger = RunPodLogger()
 

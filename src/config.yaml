@@ -1,0 +1,156 @@
+text_to_image:
+  display_name: Text to Image
+  models:
+    high_resolution_style:
+      display_name: High Resolution Style
+      description: Create stunning 2048 resolution images from your imagination
+      inference:
+        waiting_sentence: Grab a ☕... Your images are brewing
+        output_sentence: Your masterpiece is ready! 🎨 Enjoy the view. 🖼️
+        endpoint_name: SD_XL_ENDPOINT
+        endpoint_type: api
+      inputs:
+        prompt:
+          type: text
+          display_sentence: Describe your image in detail
+          place_holder: 
+        negative_prompt:
+          type: text
+          display_sentence: Describe what you do NOT want in your image
+          place_holder: 
+        num_images:
+          type: selectbox
+          display_sentence: Number of images
+          options:
+            - 1
+            - 2        
+        width:
+          type: selectbox
+          display_sentence: Select the width of your image
+          options:
+            - 512
+            - 768
+            - 1024
+        height:
+          type: selectbox
+          display_sentence: Select the height of your image
+          options:
+            - 512
+            - 768
+            - 1024
+        guidance_scale:
+          type: slider
+          display_sentence: Guidance Scale
+          min_value: 0
+          max_value: 20
+          default_value: 7
+      output:
+        type: image
+
+image_to_text:
+  display_name: Image to Text
+  models:
+    image_captioning:
+      display_name: Image Captioning
+      description: Interact with images by asking any question
+      inference:
+        waiting_sentence: 🕒 Time for a quick coffee break... your caption will be ready in a jiffy! ☕
+        output_sentence: 🎉 Voila! Your caption is ready! 🚀
+        endpoint_name: IMAGE_CAPTIONING_ENDPOINT
+        endpoint_type: runpod
+      inputs:
+        image:
+          type: image
+          display_sentence: Upload an image and ask a question to our AI model
+        question:
+          type: text
+          display_sentence: Ask something
+          place_holder: 
+      output:
+        type: text
+      
+      
+    car_plate_transcription:
+      display_name: Car Plate Transcription
+      description: Extract and read car plate numbers from vehicle images
+      inference:
+        waiting_sentence: 🕒 Time for a quick coffee break... your caption will be ready in a jiffy! ☕
+        output_sentence: 🎉 Voila! Your caption is ready! 🚀
+        endpoint_name: CAR_PLATE_REGONITION_ENDPOINT
+        endpoint_type: runpod
+
+    handwritten_transcription:
+      display_name: Handwritten Transcription
+      description: Transcribe text from handwritten images with ease
+      inference:
+        waiting_sentence: ✍️ Grab a cup of coffee... we're transcribing your handwritten picture! ☕
+        output_sentence: 🚀 Hurray! Your handwritten text has been transcribed! 🎉
+        endpoint_name: HANDWRITTEN_TRANSCRIPTION_ENDPOINT
+        endpoint_type: runpod
+
+lip_syncing:
+  display_name: Lip Syncing
+  models:
+    sadtalker:
+      display_name: SadTalker
+      description: Create a video of yourself speaking as someone else
+      inference:
+        waiting_sentence: 🎬 Lights, camera, action! Your lip sync video is in the making... 🍿
+        output_sentence: 🌟 And cut! Your blockbuster lip sync video is ready for the premiere! 🎥
+        endpoint_name: LIPSYNCING_ENDPOINT
+        endpoint_type: runpod
+      inputs:
+        image:
+          type: image
+          display_sentence: Upload your stunning selfie
+        audio:
+          type: audio
+          display_sentence: Upload a funny audio
+      output:
+        type: video
+
+audio_to_text:
+  display_name: Audio to Text
+  models:
+    transcription:
+      display_name: Transcription
+      description: Convert any audio into readable text
+      inference:
+        waiting_sentence: 🎧 Hang tight... We're spinning your audio into text! 🌀
+        output_sentence: 🎬 Voila! Your audio has been magically transcribed. 🎉
+        endpoint_name: TRANSCRIPTION_ENDPOINT
+        endpoint_type: api
+      inputs:
+        audio_base64:
+          type: audio
+          display_sentence: Ready to transform your audio into text? Upload your audio file here
+      output:
+        type: text
+
+text_classification:
+  display_name: Text Classification
+  models:
+    sentiment_analysis:
+      display_name: Sentiment Analysis
+      description: Understand the sentiment behind your text
+      inference:
+        waiting_sentence: 🤖 Our AI is diving deep into the text...
+        output_sentence: 🎉 Voila! Sentiment analysis is ready for your review.
+        endpoint_name: SENTIMENT_ANALYSIS_ENDPOINT
+        endpoint_type: api
+      inputs:
+        text:
+          type: text
+          display_sentence: Enter the text here
+          place_holder: 
+        model_name: 
+          type: selectbox
+          display_sentence: Select the type of text you want to analyse
+          options:
+            - twitter
+            - financial
+            - generic
+      output:
+        type: text
+
+

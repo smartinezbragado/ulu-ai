@@ -1,6 +1,6 @@
 import runpod
 from runpod.serverless.modules.rp_logger import RunPodLogger
-from services.utils import decode_base64_to_image, load_model, encode_image_to_base64
+from common.utils import decode_base64_to_image, load_model, encode_image_to_base64
 
 logger = RunPodLogger()
 

@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
-from services.predict import send_api_request   
-from services.utils import (
+from common.predict import send_api_request   
+from common.utils import (
     upload_dataframe, 
     launch_buttom, 
     encode_audio_to_base64, 
