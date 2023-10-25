@@ -101,7 +101,10 @@ def parse_runpod_output(model_output, output_config: str):
         return {'image': decoded_image}
     
     elif output_config['type'] == "audio":
-        decoded_audio = decode_base64_to_audio(model_output)
+        if isinstance(model_output, dict):
+            decoded_audio = decode_base64_to_audio(model_output['audio'])
+        else:
+            decoded_audio = decode_base64_to_audio(model_output)
         return {'audio': decoded_audio}
     
     
@@ -118,6 +121,7 @@ def display_model_outputs(model_output: dict) -> None:
             download_images(model_output[type])
             
         elif type == 'audio':
+            st.audio(model_output[type])
             download_audio(model_output[type])
             
         elif type == 'video':

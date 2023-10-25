@@ -153,6 +153,39 @@ text_classification:
       output:
         type: text
 
+text_to_speech:
+  display_name: Text to Speech
+  models:
+    bark:
+      display_name: Bark
+      description: Transform your text into lifelike speech with our Bark model
+      inference:
+        waiting_sentence: 🎙️ Hold on... We're turning your text into speech! 🔄
+        output_sentence: 🎉 Voila! Your text has been transformed into lifelike speech. 🚀
+        endpoint_type: runpod
+        endpoint_name: BARK_ENDPOINT
+      inputs:
+        text: 
+          type: text
+          display_sentence: Upload your text here
+          place_holder: 
+        language:
+          type: selectbox
+          display_sentence: Select the language of your text
+          options:
+            - English
+            - Spanish
+            - French
+            - Italian
+            - German
+        gender:
+          type: selectbox
+          display_sentence: Select the gender of the voice
+          options:
+            - Male
+            - Female
+      output:
+        type: audio
 
 text_to_text:
   display_name: Text to Text

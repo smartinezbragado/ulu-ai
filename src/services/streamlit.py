@@ -15,11 +15,11 @@ from src.services.display import (
     parse_api_output,
     parse_runpod_output
 )
+# from src.common.login import LOGGED_IN
 
 
 with open('src/config.yaml', 'r') as file:
     config = yaml.safe_load(file)
-
 
 
 def main():
@@ -132,4 +132,5 @@ def main():
 
     
 if __name__ == "__main__":
-    main()
+    # if LOGGED_IN == True:
+    main()        

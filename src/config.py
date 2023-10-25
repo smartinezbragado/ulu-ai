@@ -1,40 +1,4 @@
-"text_to_text": {
-    "name": "Text to Text",
-    "models": {
-        "translation": {
-            "name": "Translation",
-            "description": "Translate your text into different languages",
-            "endpoint_name": "TRANSLATION_ENDPOINT"
-    },
-        "email_generation": {
-            "name": "Email Generation",
-            "description": "Turn your thoughts into a professionally written email",
-            "endpoint_name": ""
-    },
-        "social_media_content_generation": {
-            "name": "Social Media Content Generation",
-            "description": "Generate engaging content for your social media platforms",
-            "endpoint_name": ""
-    },
-        "summary_generation": {
-            "name": "Summary Generation",
-            "description": "Get a concise summary of your lengthy text",
-            "endpoint_name": ""
-        }
-    }
-},
-"image_to_image": {
-    "name": "Image to Image",
-    "models": {
-        "image_upscaling": {
-            "name": "Image Upscaling",
-            "description": "Enhance the resolution of any image for a clearer view",
-            "endpoint_name": "IMAGE_UPSCALING_ENDPOINT"
-        },
-        "image_tuning": {
-            "name": "Image Tuning",
-            "description": "Customize your image to your liking",
-            "endpoint_name": ""
+
         }
     }
 },
@@ -88,15 +52,3 @@
     },
     
     }
-},
-"ai_pipelines":{
-    "name": "AI Pipelines",
-    "models": {
-        "ai_pipelines": {
-            "name": "AI Pipelines",
-            "description": "Concatenate AI models on after another",
-            "endpoint_name": ""
-        },
-    }
-}
-}

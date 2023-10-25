@@ -4,7 +4,6 @@ import json
 import runpod
 import requests
 import streamlit as st
-from src.config import MODELS
 
 
 runpod.api_key = os.environ['RUNPOD_API_KEY']

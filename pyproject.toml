@@ -16,6 +16,8 @@ torch = "^2.0.1"
 transformers = "^4.33.3"
 streamlit = "^1.27.2"
 boto3 = "^1.28.65"
+streamlit-login-auth-ui = "^0.2.0"
+barfi = "^0.7.0"
 
 
 [tool.poetry.group.dev.dependencies]

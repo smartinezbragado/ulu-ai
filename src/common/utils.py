@@ -20,7 +20,6 @@ def handle_exceptions(func: Callable):
     def wrapper(*args, **kwargs):
         try:
             result = func(*args, **kwargs)
-            st.success("Operation completed successfully")
             return result
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
@@ -109,8 +108,6 @@ def download_text(text: str):
         file_name="ulu.txt",
         mime='text/plain',
     )
-
-
 
 
 # Video
